@@ -17,18 +17,18 @@ def get_repository(incident):
         return git.Repo.init(incident.dirpath)
 
 
-def uncommited_files(incident):
+def uncommitted_files(incident):
     repo = get_repository(incident)
     return [item.a_path for item in repo.index.diff(None)] + repo.untracked_files
 
 
 def commit(incident, message):
     repo = get_repository(incident)
-    changes = uncommited_files(incident)
+    changes = uncommitted_files(incident)
     if not changes:
         return False
-    repo.index.add(changes)
-    repo.index.commit(message)
+    repo.git.add(all=True)
+    repo.git.commit(message=message)
     return True
 
 

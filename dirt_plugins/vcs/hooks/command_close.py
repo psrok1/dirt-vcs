@@ -17,7 +17,7 @@ def pre_hook_close_command(ctx, incident_id, *args, **kwargs):
     incident = choose_incident(incident_id)
     if incident is None:
         return  # Let dirt handle it
-    if not repository.uncommited_files(incident):
+    if not repository.uncommitted_files(incident):
         return
     warning("Uncommitted changes left in incident you want to close. They will be committed automatically")
     if not click.confirm("Are you sure?"):

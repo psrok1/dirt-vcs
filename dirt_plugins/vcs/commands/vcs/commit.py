@@ -10,7 +10,7 @@ from dirt_plugins.vcs import repository
 @click.pass_context
 def vcs_commit_command(ctx, message):
     current = ctx.obj["INCIDENT"]
-    changes = repository.uncommited_files(current)
+    changes = repository.uncommitted_files(current)
     default_message = "(empty)"
 
     if not changes:
